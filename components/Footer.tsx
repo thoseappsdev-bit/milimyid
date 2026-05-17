@@ -97,6 +97,17 @@ export default function Footer() {
           <p className="text-white/35 text-xs">
             Dibuat dengan ❤️ untuk para pecinta hewan.
           </p>
+          <p className="text-white/30 text-xs">
+            Created by{" "}
+            <a
+              href="https://www.theaimates.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white transition-colors underline underline-offset-2"
+            >
+              theaimates.com
+            </a>
+          </p>
         </div>
       </div>
     </footer>
