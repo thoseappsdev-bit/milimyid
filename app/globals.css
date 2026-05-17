@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-playfair, "Playfair Display", Georgia, serif);
+  --font-body: var(--font-inter, "Inter", system-ui, sans-serif);
+}
+
+@theme {
+  --color-navy: #245879;
+  --color-slate: #6a84a6;
+  --color-cream: #fff4e1;
+  --color-warm: #f5e6c8;
+  --color-blush: #f9b99f;
+  --color-sage: #a8c5a0;
+  --color-darknavy: #1a3f5c;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(135deg, #fff4e1 0%, #f5e6c8 40%, #e8f0f7 100%);
+  background-attachment: fixed;
+  font-family: var(--font-inter, "Inter", system-ui, sans-serif);
+  color: #245879;
+  min-height: 100vh;
+}
+
+/* ── Glassmorphism ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(36, 88, 121, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(36, 88, 121, 0.15);
+}
+.glass-nav {
+  background: rgba(255, 244, 225, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: #245879;
+  color: #fff;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(36, 88, 121, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+.btn-primary:hover {
+  background: #1a3f5c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(36, 88, 121, 0.4);
+}
+.btn-ghost {
+  color: #245879;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid #245879;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+.btn-ghost:hover {
+  background: #245879;
+  color: #fff;
+}
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  text-decoration: none;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+.btn-whatsapp:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+}
+
+/* ── Cards ── */
+.service-card {
+  border-top: 3px solid #245879;
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(36, 88, 121, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(36, 88, 121, 0.14);
+}
+.testimonial-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  border-left: 4px solid #6a84a6;
+  box-shadow: 0 4px 24px rgba(36, 88, 121, 0.07);
+}
+
+/* ── Nav links ── */
+.nav-link {
+  position: relative;
+  font-weight: 500;
+  color: #245879;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #245879;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link:hover {
+  color: #1a3f5c;
+}
+
+/* ── Trust badge ── */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(36, 88, 121, 0.08);
+  border: 1px solid rgba(36, 88, 121, 0.15);
+  border-radius: 999px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #245879;
+}
+
+/* ── Pull quote ── */
+.pull-quote {
+  border-left: 4px solid #f9b99f;
+  padding-left: 1.5rem;
+  font-family: var(--font-playfair, "Playfair Display", Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: #245879;
+  line-height: 1.5;
+}
+
+/* ── Scroll animations ── */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-animate].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Float keyframes ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes float-card1 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-8px) translateX(4px); }
+}
+@keyframes float-card2 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-6px) translateX(-4px); }
+}
+@keyframes float-card3 {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-10px) translateX(2px); }
+}
+.float-paw { animation: float 4s ease-in-out infinite; }
+.float-c1  { animation: float-card1 3.5s ease-in-out infinite; }
+.float-c2  { animation: float-card2 4.2s ease-in-out infinite; }
+.float-c3  { animation: float-card3 3.8s ease-in-out infinite; }
+
+/* ── Float chips ── */
+.float-chip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #245879;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(36, 88, 121, 0.12);
+}
+
+/* ── Paw circle illustration ── */
+.paw-circle {
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #e8f0f7, #f5e6c8);
+  box-shadow: 0 20px 60px rgba(36, 88, 121, 0.15);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── WhatsApp FAB ── */
+.fab-wa {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.fab-wa:hover,
+.fab-wa:active {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.55);
+}
+@media (min-width: 768px) {
+  .fab-wa { display: none; }
+}
+
+/* ── Responsive sizes ── */
+@media (max-width: 768px) {
+  .paw-circle { width: 280px; height: 280px; }
+}
+@media (max-width: 639px) {
+  .float-chip { display: none; }
+  .paw-circle { width: 220px; height: 220px; }
+}
+
+/* ── Step mobile connector ── */
+@media (max-width: 1023px) {
+  .step-mobile-wrap {
+    position: relative;
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+  .step-mobile-wrap::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3.5rem;
+    bottom: -2rem;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .step-mobile-wrap:last-child::before { display: none; }
+}
+
+/* ── Stars ── */
+.star { color: #f59e0b; font-size: 1rem; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] { opacity: 1; transform: none; transition: none; }
+  .float-paw, .float-c1, .float-c2, .float-c3 { animation: none; }
+}
