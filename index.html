@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mili Animal Care — Perawatan Hewan Peliharaan Sabar & Terpercaya</title>
+  <meta name="description" content="Mili Animal Care — Jasa perawatan hewan peliharaan yang sabar, teliti, dan terpercaya. Grooming, jalan-jalan, dan penitipan hewan di Indonesia. Hubungi kami via WhatsApp." />
+  <meta property="og:title" content="Mili Animal Care — Perawatan Hewan Peliharaan" />
+  <meta property="og:description" content="Layanan perawatan hewan peliharaan yang sabar dan terpercaya. Grooming, jalan-jalan, penitipan." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mili.my.id" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   '#245879',
+            slate:  '#6a84a6',
+            cream:  '#fff4e1',
+            warm:   '#f5e6c8',
+            blush:  '#f9b99f',
+            sage:   '#a8c5a0',
+            darknavy: '#1a3f5c',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ─── Global ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #fff4e1; color: #245879; }
+
+    /* ─── Background gradient ─── */
+    .bg-hero-gradient {
+      background: linear-gradient(135deg, #fff4e1 0%, #f5e6c8 40%, #e8f0f7 100%);
+    }
+
+    /* ─── Glassmorphism ─── */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(36, 88, 121, 0.10);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(36, 88, 121, 0.15);
+    }
+    .glass-nav {
+      background: rgba(255, 244, 225, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      background: #245879;
+      color: #fff;
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(36, 88, 121, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #1a3f5c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(36, 88, 121, 0.4);
+    }
+    .btn-ghost {
+      color: #245879;
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid #245879;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-ghost:hover {
+      background: #245879;
+      color: #fff;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+    }
+
+    /* ─── Scroll animations ─── */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    [data-animate].animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Float animation (hero illustration) ─── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50%       { transform: translateY(-8px) rotate(3deg); }
+    }
+    @keyframes float-card1 {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50%       { transform: translateY(-8px) translateX(4px); }
+    }
+    @keyframes float-card2 {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50%       { transform: translateY(-6px) translateX(-4px); }
+    }
+    @keyframes float-card3 {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50%       { transform: translateY(-10px) translateX(2px); }
+    }
+    .float-paw   { animation: float 4s ease-in-out infinite; }
+    .float-c1    { animation: float-card1 3.5s ease-in-out infinite; }
+    .float-c2    { animation: float-card2 4.2s ease-in-out infinite; }
+    .float-c3    { animation: float-card3 3.8s ease-in-out infinite; }
+
+    /* ─── Typography helpers ─── */
+    .font-display { font-family: 'Playfair Display', serif; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ─── Section divider wave ─── */
+    .wave-divider svg { display: block; }
+
+    /* ─── Service card top border ─── */
+    .service-card {
+      border-top: 3px solid #245879;
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 24px rgba(36, 88, 121, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(36, 88, 121, 0.14);
+    }
+
+    /* ─── Testimonial card ─── */
+    .testimonial-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      border-left: 4px solid #6a84a6;
+      box-shadow: 0 4px 24px rgba(36, 88, 121, 0.07);
+    }
+
+    /* ─── How it works connector ─── */
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      border-top: 2px dashed rgba(255, 255, 255, 0.25);
+      margin-top: -1.5rem;
+    }
+
+    /* ─── Nav active link ─── */
+    .nav-link { position: relative; font-weight: 500; color: #245879; text-decoration: none; transition: color 0.2s; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #245879; transition: width 0.25s ease; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover { color: #1a3f5c; }
+
+    /* ─── Trust badge ─── */
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: rgba(36, 88, 121, 0.08);
+      border: 1px solid rgba(36, 88, 121, 0.15);
+      border-radius: 999px;
+      padding: 0.375rem 0.875rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #245879;
+    }
+
+    /* ─── Pull quote ─── */
+    .pull-quote {
+      border-left: 4px solid #f9b99f;
+      padding-left: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      color: #245879;
+      line-height: 1.5;
+    }
+
+    /* ─── Reduced motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate] { opacity: 1; transform: none; transition: none; }
+      .float-paw, .float-c1, .float-c2, .float-c3 { animation: none; }
+    }
+
+    /* ─── Star rating ─── */
+    .star { color: #f59e0b; font-size: 1rem; }
+
+    /* ─── Paw CSS illustration ─── */
+    .paw-circle {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #e8f0f7, #f5e6c8);
+      box-shadow: 0 20px 60px rgba(36, 88, 121, 0.15);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .paw-circle { width: 280px; height: 280px; }
+    }
+
+    /* ─── Mini floating glass chip ─── */
+    .float-chip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #245879;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(36, 88, 121, 0.12);
+    }
+  </style>
+</head>
+
+<body x-data="{ menuOpen: false }" class="bg-hero-gradient">
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-navy no-underline">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="16" cy="22" rx="8" ry="7" fill="#245879" opacity="0.9"/>
+          <ellipse cx="9" cy="14" rx="4" ry="5.5" fill="#245879" opacity="0.7" transform="rotate(-20 9 14)"/>
+          <ellipse cx="23" cy="14" rx="4" ry="5.5" fill="#245879" opacity="0.7" transform="rotate(20 23 14)"/>
+          <ellipse cx="5" cy="22" rx="3" ry="4" fill="#245879" opacity="0.6" transform="rotate(-15 5 22)"/>
+          <ellipse cx="27" cy="22" rx="3" ry="4" fill="#245879" opacity="0.6" transform="rotate(15 27 22)"/>
+        </svg>
+        <span class="font-display font-bold text-xl text-navy tracking-tight">mili.</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#layanan" class="nav-link text-sm">Layanan</a>
+        <a href="#cara-kerja" class="nav-link text-sm">Cara Kerja</a>
+        <a href="#tentang" class="nav-link text-sm">Tentang Kami</a>
+        <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="btn-primary text-sm py-2.5 px-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat Sekarang
+        </a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button @click="menuOpen = !menuOpen" class="md:hidden p-2 rounded-lg text-navy" :aria-expanded="menuOpen" aria-label="Menu">
+        <svg x-show="!menuOpen" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="menuOpen" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div x-show="menuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="md:hidden px-6 pb-5 pt-2 flex flex-col gap-4">
+      <a href="#layanan" @click="menuOpen=false" class="text-navy font-medium py-2 border-b border-navy/10">Layanan</a>
+      <a href="#cara-kerja" @click="menuOpen=false" class="text-navy font-medium py-2 border-b border-navy/10">Cara Kerja</a>
+      <a href="#tentang" @click="menuOpen=false" class="text-navy font-medium py-2 border-b border-navy/10">Tentang Kami</a>
+      <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="btn-whatsapp text-center justify-center mt-1">
+        Chat via WhatsApp
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section id="hero" class="min-h-screen flex items-center pt-24 pb-16">
+    <div class="max-w-6xl mx-auto px-6 w-full">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+
+        <!-- Left: Text -->
+        <div class="flex-1 text-center md:text-left" data-animate>
+          <span class="inline-block text-xs font-bold tracking-widest uppercase text-slate mb-4 bg-slate/10 px-4 py-1.5 rounded-full">Perawatan Hewan Peliharaan</span>
+          <h1 class="font-display font-bold text-navy mb-6 leading-tight" style="font-size: clamp(2.5rem, 6vw, 4.25rem);">
+            Setiap Langkah,<br/>
+            <span class="italic text-slate">Sepenuh Hati.</span>
+          </h1>
+          <p class="text-slate font-body text-lg mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+            Mili hadir untuk menemani hewan kesayanganmu — sabar, teliti, dan penuh kasih sayang. Karena setiap hewan punya ritme tersendiri yang layak untuk dihormati.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-10">
+            <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Hubungi via WhatsApp
+            </a>
+            <a href="#layanan" class="btn-ghost">
+              Lihat Layanan
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+            <span class="trust-badge">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              100+ Pelanggan
+            </span>
+            <span class="trust-badge">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              Berpengalaman
+            </span>
+            <span class="trust-badge">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              Respon Cepat
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: CSS Illustration -->
+        <div class="flex-1 flex justify-center items-center" data-animate data-delay="200">
+          <div class="relative">
+            <div class="paw-circle float-paw">
+              <!-- Paw SVG -->
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.25">
+                <ellipse cx="60" cy="80" rx="30" ry="26" fill="#245879"/>
+                <ellipse cx="35" cy="52" rx="14" ry="19" fill="#245879" transform="rotate(-20 35 52)"/>
+                <ellipse cx="85" cy="52" rx="14" ry="19" fill="#245879" transform="rotate(20 85 52)"/>
+                <ellipse cx="18" cy="76" rx="11" ry="14" fill="#245879" transform="rotate(-15 18 76)"/>
+                <ellipse cx="102" cy="76" rx="11" ry="14" fill="#245879" transform="rotate(15 102 76)"/>
+              </svg>
+            </div>
+
+            <!-- Floating chips -->
+            <div class="float-chip float-c1" style="top: 10%; right: -20%; transform: rotate(3deg);">
+              <svg width="14" height="14" fill="none" stroke="#245879" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l-4.95-4.95M19 19l-4.95-4.95M10 7H5m5 0v5m0-5a5 5 0 110 10 5 5 0 010-10z"/></svg>
+              Grooming
+            </div>
+            <div class="float-chip float-c2" style="bottom: 15%; left: -18%; transform: rotate(-4deg);">
+              <svg width="14" height="14" fill="none" stroke="#245879" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+              Jalan-jalan
+            </div>
+            <div class="float-chip float-c3" style="bottom: -5%; right: 5%; transform: rotate(2deg);">
+              <svg width="14" height="14" fill="none" stroke="#245879" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              Penitipan
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHY MILI
+  ═══════════════════════════════════════════════ -->
+  <section id="kenapa-mili" class="py-20 bg-white/60">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14" data-animate>
+        <span class="text-xs font-bold tracking-widest uppercase text-slate">Nilai Kami</span>
+        <h2 class="font-display font-bold text-navy mt-2 mb-4" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Kenapa Pilih Mili?</h2>
+        <p class="text-slate max-w-xl mx-auto">Kami percaya perawatan terbaik adalah perawatan yang paling tulus — bukan yang tercepat.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div class="glass-card p-8" data-animate data-delay="0">
+          <div class="w-12 h-12 rounded-2xl bg-navy/10 flex items-center justify-center mb-5">
+            <i data-lucide="heart" class="w-6 h-6 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Sabar & Telaten</h3>
+          <p class="text-slate text-sm leading-relaxed">Kami tidak terburu-buru. Setiap hewan punya ritme tersendiri, dan kami mengikutinya dengan penuh kesabaran dan perhatian.</p>
+        </div>
+
+        <div class="glass-card p-8" data-animate data-delay="100">
+          <div class="w-12 h-12 rounded-2xl bg-navy/10 flex items-center justify-center mb-5">
+            <i data-lucide="shield-check" class="w-6 h-6 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Terpercaya</h3>
+          <p class="text-slate text-sm leading-relaxed">Lebih dari 100 keluarga sudah menitipkan hewan peliharaan mereka kepada kami. Kepercayaan itu kami jaga setiap harinya.</p>
+        </div>
+
+        <div class="glass-card p-8" data-animate data-delay="200">
+          <div class="w-12 h-12 rounded-2xl bg-navy/10 flex items-center justify-center mb-5">
+            <i data-lucide="eye" class="w-6 h-6 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Perhatian Penuh</h3>
+          <p class="text-slate text-sm leading-relaxed">Setiap sesi dicatat, setiap perubahan dilaporkan. Kamu selalu tahu kondisi terkini hewan kesayanganmu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES
+  ═══════════════════════════════════════════════ -->
+  <section id="layanan" class="py-20 bg-hero-gradient">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14" data-animate>
+        <span class="text-xs font-bold tracking-widest uppercase text-slate">Apa yang Kami Tawarkan</span>
+        <h2 class="font-display font-bold text-navy mt-2 mb-3" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Layanan Kami</h2>
+        <div class="w-12 h-1 bg-blush rounded-full mx-auto mb-4"></div>
+        <p class="text-slate max-w-xl mx-auto">Setiap layanan dirancang untuk kenyamanan hewan kesayanganmu — bukan sekadar menyelesaikan tugas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <!-- Walks -->
+        <div class="service-card p-8 flex flex-col" data-animate data-delay="0">
+          <div class="w-14 h-14 rounded-2xl bg-navy/8 bg-opacity-10 flex items-center justify-center mb-5" style="background: rgba(36,88,121,0.08)">
+            <i data-lucide="footprints" class="w-7 h-7 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Jalan-jalan</h3>
+          <p class="text-slate text-sm leading-relaxed flex-1">Sesi jalan santai untuk menjaga kesehatan fisik dan mental anjingmu, dengan pemandu yang sabar dan berpengalaman. Setiap langkah disesuaikan dengan energi dan kenyamanannya.</p>
+          <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20tertarik%20dengan%20layanan%20jalan-jalan%20untuk%20anjing%20saya." target="_blank" class="mt-6 inline-flex items-center gap-2 text-navy font-semibold text-sm hover:gap-3 transition-all">
+            Tanya Harga <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Grooming -->
+        <div class="service-card p-8 flex flex-col" data-animate data-delay="100">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(36,88,121,0.08)">
+            <i data-lucide="scissors" class="w-7 h-7 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Grooming</h3>
+          <p class="text-slate text-sm leading-relaxed flex-1">Mandi, potong bulu, trimming kuku, dan perawatan telinga — semua dalam satu sesi yang nyaman dan tidak menegangkan, dilakukan dengan penuh kehati-hatian.</p>
+          <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20tertarik%20dengan%20layanan%20grooming%20untuk%20hewan%20saya." target="_blank" class="mt-6 inline-flex items-center gap-2 text-navy font-semibold text-sm hover:gap-3 transition-all">
+            Tanya Harga <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Boarding -->
+        <div class="service-card p-8 flex flex-col" data-animate data-delay="200">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background: rgba(36,88,121,0.08)">
+            <i data-lucide="home" class="w-7 h-7 text-navy"></i>
+          </div>
+          <h3 class="font-display font-semibold text-navy text-xl mb-3">Penitipan</h3>
+          <p class="text-slate text-sm leading-relaxed flex-1">Ketika kamu pergi, hewan kesayanganmu tetap mendapat perhatian penuh di lingkungan yang aman dan nyaman. Kami kirim update harian agar kamu tenang di mana pun berada.</p>
+          <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20tertarik%20dengan%20layanan%20penitipan%20hewan%20saya." target="_blank" class="mt-6 inline-flex items-center gap-2 text-navy font-semibold text-sm hover:gap-3 transition-all">
+            Tanya Harga <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════════════ -->
+  <section id="cara-kerja" class="py-24" style="background: #245879;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16" data-animate>
+        <span class="text-xs font-bold tracking-widest uppercase text-slate/60 text-white/60">Mulai dari Sini</span>
+        <h2 class="font-display font-bold text-white mt-2 mb-4" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Cara Kerjanya Sederhana</h2>
+        <p class="text-white/70 max-w-lg mx-auto">Tidak perlu ribet. Dalam tiga langkah mudah, hewan peliharaanmu sudah dalam perawatan terbaik.</p>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-4 items-start">
+
+        <!-- Step 1 -->
+        <div class="flex-1 relative text-center px-6" data-animate data-delay="0">
+          <div class="relative inline-block mb-6">
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">01</span>
+            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
+              <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-display font-semibold text-white text-xl mb-3">Hubungi Kami</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Chat via WhatsApp, ceritakan tentang hewanmu, dan kita atur jadwal yang paling cocok untukmu.</p>
+        </div>
+
+        <!-- Connector -->
+        <div class="hidden lg:flex items-center" style="margin-top: 6.5rem; flex: 0 0 auto; width: 60px;">
+          <div style="width: 100%; height: 2px; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex-1 relative text-center px-6" data-animate data-delay="150">
+          <div class="relative inline-block mb-6">
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">02</span>
+            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
+              <i data-lucide="handshake" class="w-7 h-7 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-display font-semibold text-white text-xl mb-3">Kenalan Dulu</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Sebelum memulai, kami luangkan waktu untuk berkenalan dengan hewanmu — biar dia nyaman dan percaya dulu.</p>
+        </div>
+
+        <!-- Connector -->
+        <div class="hidden lg:flex items-center" style="margin-top: 6.5rem; flex: 0 0 auto; width: 60px;">
+          <div style="width: 100%; height: 2px; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex-1 relative text-center px-6" data-animate data-delay="300">
+          <div class="relative inline-block mb-6">
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">03</span>
+            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
+              <i data-lucide="calendar-check" class="w-7 h-7 text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-display font-semibold text-white text-xl mb-3">Perawatan Rutin</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Setelah cocok, kami hadir secara rutin sesuai jadwal yang telah disepakati. Kamu tinggal santai.</p>
+        </div>
+
+      </div>
+
+      <!-- CTA inside section -->
+      <div class="text-center mt-14" data-animate>
+        <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20memulai%20layanan%20perawatan%20hewan." target="_blank" class="btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Mulai Sekarang
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════════ -->
+  <section id="testimoni" class="py-20" style="background: #f0f6fb;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14" data-animate>
+        <span class="text-xs font-bold tracking-widest uppercase text-slate">Kata Mereka</span>
+        <h2 class="font-display font-bold text-navy mt-2 mb-4" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Pemilik Hewan Bicara</h2>
+        <p class="text-slate max-w-xl mx-auto">Kepercayaan mereka adalah motivasi terbesar kami untuk terus memberikan yang terbaik.</p>
+      </div>
+
+      <!-- Desktop: 3 columns -->
+      <div class="hidden lg:grid grid-cols-3 gap-7">
+
+        <div class="testimonial-card p-7" data-animate data-delay="0">
+          <div class="flex mb-4">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Kucing saya, Kocheng, tadinya susah banget kalau mau dimandiin — selalu kabur dan garuk-garuk. Tapi sama Mili, dia anteng banget. Kayaknya Kocheng ngerti kalau dia lagi diurusin sama orang yang sabar. Sekarang grooming udah jadi hal yang dia tunggu-tunggu!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold flex-shrink-0">RD</div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Ratna Dewi</p>
+              <p class="text-slate text-xs">Jakarta Selatan · Kocheng, Persia 3 thn</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card p-7" data-animate data-delay="100">
+          <div class="flex mb-4">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Brownie tipe anjing yang super energik dan susah diajak jalan sama orang asing. Mili mau repot-repot kenalan dulu sama dia beberapa kali sebelum mulai jalan bareng. Sekarang kalau liat Mili dateng, Brownie udah loncat-loncat duluan!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-slate flex items-center justify-center text-white text-sm font-bold flex-shrink-0">BP</div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Bagas Prasetyo</p>
+              <p class="text-slate text-xs">Bandung · Brownie, Labrador 2 thn</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card p-7" data-animate data-delay="200">
+          <div class="flex mb-4">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Waktu saya harus keluar kota 5 hari, saya titip Mochi sama Mili. Setiap hari mereka kirim foto dan update kondisi Mochi. Pulang-pulang Mochi sehat, wangi, dan tampak senang. Tidak akan titip ke tempat lain lagi!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-blush flex items-center justify-center text-white text-sm font-bold flex-shrink-0">SM</div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Sinta Maharani</p>
+              <p class="text-slate text-xs">Depok · Mochi, Shih Tzu 5 thn</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile: Alpine carousel -->
+      <div class="lg:hidden" x-data="{ current: 0, total: 3 }">
+        <div class="overflow-hidden">
+          <div class="flex transition-transform duration-500 ease-in-out" :style="`transform: translateX(-${current * 100}%)`">
+
+            <div class="testimonial-card p-7 min-w-full">
+              <div class="flex mb-4"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Kucing saya, Kocheng, tadinya susah banget kalau mau dimandiin — selalu kabur dan garuk-garuk. Tapi sama Mili, dia anteng banget. Sekarang grooming udah jadi hal yang dia tunggu-tunggu!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold">RD</div>
+                <div><p class="font-semibold text-navy text-sm">Ratna Dewi</p><p class="text-slate text-xs">Jakarta Selatan · Kocheng, Persia 3 thn</p></div>
+              </div>
+            </div>
+
+            <div class="testimonial-card p-7 min-w-full">
+              <div class="flex mb-4"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Mili mau repot-repot kenalan dulu sama Brownie sebelum mulai jalan bareng. Sekarang kalau liat Mili dateng, Brownie udah loncat-loncat duluan!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate flex items-center justify-center text-white text-sm font-bold">BP</div>
+                <div><p class="font-semibold text-navy text-sm">Bagas Prasetyo</p><p class="text-slate text-xs">Bandung · Brownie, Labrador 2 thn</p></div>
+              </div>
+            </div>
+
+            <div class="testimonial-card p-7 min-w-full">
+              <div class="flex mb-4"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+              <p class="text-navy/80 text-sm leading-relaxed mb-6 font-display italic">"Setiap hari mereka kirim foto dan update kondisi Mochi. Pulang-pulang Mochi sehat, wangi, dan tampak senang. Tidak akan titip ke tempat lain lagi!"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blush flex items-center justify-center text-white text-sm font-bold">SM</div>
+                <div><p class="font-semibold text-navy text-sm">Sinta Maharani</p><p class="text-slate text-xs">Depok · Mochi, Shih Tzu 5 thn</p></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 mt-6">
+          <template x-for="i in total" :key="i">
+            <button @click="current = i - 1" :class="current === i - 1 ? 'bg-navy w-6' : 'bg-navy/30 w-2.5'" class="h-2.5 rounded-full transition-all duration-300"></button>
+          </template>
+        </div>
+
+        <!-- Arrows -->
+        <div class="flex justify-center gap-4 mt-4">
+          <button @click="current = (current - 1 + total) % total" class="w-10 h-10 rounded-full border-2 border-navy/20 flex items-center justify-center text-navy hover:bg-navy hover:text-white transition-all">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button @click="current = (current + 1) % total" class="w-10 h-10 rounded-full border-2 border-navy/20 flex items-center justify-center text-navy hover:bg-navy hover:text-white transition-all">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT / BRAND STORY
+  ═══════════════════════════════════════════════ -->
+  <section id="tentang" class="py-20 bg-hero-gradient">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+
+        <!-- Text -->
+        <div class="flex-1" data-animate>
+          <span class="text-xs font-bold tracking-widest uppercase text-slate">Tentang Kami</span>
+          <h2 class="font-display font-bold text-navy mt-3 mb-6" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Kenapa Kami<br/>Bernama Mili?</h2>
+          <p class="text-slate leading-relaxed mb-6">
+            Mili berasal dari kata <em>"mili"</em> — kecil, tapi penuh makna. Kami percaya bahwa perawatan terbaik bukan yang paling mewah atau yang paling cepat, tapi yang paling tulus.
+          </p>
+          <p class="text-slate leading-relaxed mb-8">
+            Setiap hewan peliharaan berhak mendapat perhatian yang disesuaikan dengan kebutuhannya sendiri — tanpa terburu-buru, tanpa stres. Itulah mengapa setiap sesi kami selalu dimulai dengan mendengarkan dan memahami ritme mereka.
+          </p>
+          <blockquote class="pull-quote">
+            "Care, at the right pace."
+          </blockquote>
+        </div>
+
+        <!-- CSS Illustration: abstract paw -->
+        <div class="flex-shrink-0 flex items-center justify-center" data-animate data-delay="150">
+          <div class="relative w-72 h-72">
+            <!-- Background circle -->
+            <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 35% 35%, #e8f0f7, #f5e6c8); box-shadow: 0 20px 60px rgba(36,88,121,0.12);"></div>
+            <!-- Paw SVG centered -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg width="140" height="140" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="60" cy="80" rx="30" ry="26" fill="#245879" opacity="0.18"/>
+                <ellipse cx="35" cy="52" rx="14" ry="19" fill="#245879" opacity="0.14" transform="rotate(-20 35 52)"/>
+                <ellipse cx="85" cy="52" rx="14" ry="19" fill="#245879" opacity="0.14" transform="rotate(20 85 52)"/>
+                <ellipse cx="18" cy="76" rx="11" ry="14" fill="#245879" opacity="0.12" transform="rotate(-15 18 76)"/>
+                <ellipse cx="102" cy="76" rx="11" ry="14" fill="#245879" opacity="0.12" transform="rotate(15 102 76)"/>
+              </svg>
+            </div>
+            <!-- Floating dots -->
+            <div class="absolute top-4 right-8 w-3 h-3 rounded-full bg-blush/60 float-c1"></div>
+            <div class="absolute bottom-8 left-4 w-4 h-4 rounded-full bg-slate/30 float-c2"></div>
+            <div class="absolute top-1/2 right-3 w-2 h-2 rounded-full bg-navy/20 float-c3"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CTA BANNER
+  ═══════════════════════════════════════════════ -->
+  <section class="py-24" style="background: linear-gradient(135deg, #245879 0%, #1a3f5c 100%);">
+    <div class="max-w-3xl mx-auto px-6 text-center" data-animate>
+      <h2 class="font-display font-bold text-white mb-4" style="font-size: clamp(2rem, 5vw, 3rem);">Siap untuk mulai?</h2>
+      <p class="text-white/70 mb-10 text-lg leading-relaxed">
+        Hewan kesayanganmu menunggu perawatan terbaik.<br/>Chat kami sekarang — konsultasi gratis, tanpa kewajiban.
+      </p>
+      <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20konsultasi%20tentang%20perawatan%20hewan%20saya." target="_blank" class="btn-whatsapp text-base px-8 py-4 mb-6 inline-flex">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hubungi via WhatsApp
+      </a>
+      <p class="text-white/50 text-sm">
+        Atau email kami di <a href="mailto:hallo@mili.my.id" class="text-white/80 underline underline-offset-2 hover:text-white transition-colors">hallo@mili.my.id</a>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer style="background: #1a3f5c;">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="22" rx="8" ry="7" fill="white" opacity="0.8"/><ellipse cx="9" cy="14" rx="4" ry="5.5" fill="white" opacity="0.6" transform="rotate(-20 9 14)"/><ellipse cx="23" cy="14" rx="4" ry="5.5" fill="white" opacity="0.6" transform="rotate(20 23 14)"/><ellipse cx="5" cy="22" rx="3" ry="4" fill="white" opacity="0.5" transform="rotate(-15 5 22)"/><ellipse cx="27" cy="22" rx="3" ry="4" fill="white" opacity="0.5" transform="rotate(15 27 22)"/></svg>
+            <span class="font-display font-bold text-xl text-white">mili.</span>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-3">Perawatan hewan peliharaan yang sabar, teliti, dan penuh kasih sayang.</p>
+          <p class="text-white/40 text-xs italic font-display">"Care, at the right pace."</p>
+        </div>
+
+        <!-- Col 2: Links -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Navigasi</h4>
+          <ul class="space-y-3">
+            <li><a href="#layanan" class="text-white/60 text-sm hover:text-white transition-colors">Layanan</a></li>
+            <li><a href="#cara-kerja" class="text-white/60 text-sm hover:text-white transition-colors">Cara Kerja</a></li>
+            <li><a href="#testimoni" class="text-white/60 text-sm hover:text-white transition-colors">Testimoni</a></li>
+            <li><a href="#tentang" class="text-white/60 text-sm hover:text-white transition-colors">Tentang Kami</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Kontak</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" class="mt-0.5 flex-shrink-0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <a href="https://wa.me/6282221626313" target="_blank" class="text-white/60 text-sm hover:text-white transition-colors">+62 822 2162 6313</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" opacity="0.6" class="mt-0.5 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <a href="mailto:hallo@mili.my.id" class="text-white/60 text-sm hover:text-white transition-colors">hallo@mili.my.id</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/35 text-xs">© 2025 Mili Animal Care. All rights reserved.</p>
+        <p class="text-white/35 text-xs">Dibuat dengan ❤️ untuk para pecinta hewan.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════ -->
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <script>
+    // ── Lucide icon render ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+
+    // ── Scroll-triggered animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || '0', 10);
+          setTimeout(() => entry.target.classList.add('animate-in'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // ── Scroll spy for nav links ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => spyObserver.observe(s));
+  </script>
+
+</body>
+</html>
