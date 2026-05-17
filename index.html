@@ -233,6 +233,63 @@
       line-height: 1.5;
     }
 
+    /* ─── Prevent horizontal overflow ─── */
+    html, body { overflow-x: hidden; }
+
+    /* ─── Touch-friendly targets ─── */
+    .btn-primary, .btn-ghost, .btn-whatsapp, button, a {
+      touch-action: manipulation;
+    }
+    .btn-primary, .btn-ghost, .btn-whatsapp {
+      min-height: 48px;
+    }
+
+    /* ─── Hide float chips on small screens to prevent overflow ─── */
+    @media (max-width: 639px) {
+      .float-chip { display: none; }
+      .paw-circle { width: 220px; height: 220px; }
+    }
+
+    /* ─── Mobile step: vertical connector ─── */
+    @media (max-width: 1023px) {
+      .step-mobile-wrap {
+        position: relative;
+        padding-left: 1.5rem;
+        text-align: left;
+      }
+      .step-mobile-wrap::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 3.5rem;
+        bottom: -2rem;
+        width: 2px;
+        background: rgba(255,255,255,0.15);
+      }
+      .step-mobile-wrap:last-child::before { display: none; }
+    }
+
+    /* ─── Floating WhatsApp FAB (mobile only) ─── */
+    .fab-wa {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+    .fab-wa:hover, .fab-wa:active { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
+    @media (min-width: 768px) { .fab-wa { display: none; } }
+
     /* ─── Reduced motion ─── */
     @media (prefers-reduced-motion: reduce) {
       [data-animate] { opacity: 1; transform: none; transition: none; }
@@ -349,11 +406,11 @@
 
           <!-- CTAs -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-10">
-            <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="btn-primary">
+            <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="btn-primary w-full sm:w-auto justify-center">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Hubungi via WhatsApp
             </a>
-            <a href="#layanan" class="btn-ghost">
+            <a href="#layanan" class="btn-ghost w-full sm:w-auto justify-center">
               Lihat Layanan
             </a>
           </div>
@@ -377,7 +434,7 @@
 
         <!-- Right: CSS Illustration -->
         <div class="flex-1 flex justify-center items-center" data-animate data-delay="200">
-          <div class="relative">
+          <div class="relative sm:overflow-visible overflow-hidden rounded-full">
             <div class="paw-circle float-paw">
               <!-- Paw SVG -->
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.25">
@@ -413,7 +470,7 @@
   <!-- ═══════════════════════════════════════════════
        WHY MILI
   ═══════════════════════════════════════════════ -->
-  <section id="kenapa-mili" class="py-20 bg-white/60">
+  <section id="kenapa-mili" class="py-14 md:py-20 bg-white/60">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14" data-animate>
         <span class="text-xs font-bold tracking-widest uppercase text-slate">Nilai Kami</span>
@@ -453,7 +510,7 @@
   <!-- ═══════════════════════════════════════════════
        SERVICES
   ═══════════════════════════════════════════════ -->
-  <section id="layanan" class="py-20 bg-hero-gradient">
+  <section id="layanan" class="py-14 md:py-20 bg-hero-gradient">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14" data-animate>
         <span class="text-xs font-bold tracking-widest uppercase text-slate">Apa yang Kami Tawarkan</span>
@@ -506,9 +563,9 @@
   <!-- ═══════════════════════════════════════════════
        HOW IT WORKS
   ═══════════════════════════════════════════════ -->
-  <section id="cara-kerja" class="py-24" style="background: #245879;">
+  <section id="cara-kerja" class="py-14 md:py-24" style="background: #245879;">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16" data-animate>
+      <div class="text-center mb-12 md:mb-16" data-animate>
         <span class="text-xs font-bold tracking-widest uppercase text-slate/60 text-white/60">Mulai dari Sini</span>
         <h2 class="font-display font-bold text-white mt-2 mb-4" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">Cara Kerjanya Sederhana</h2>
         <p class="text-white/70 max-w-lg mx-auto">Tidak perlu ribet. Dalam tiga langkah mudah, hewan peliharaanmu sudah dalam perawatan terbaik.</p>
@@ -517,48 +574,48 @@
       <div class="flex flex-col lg:flex-row gap-8 lg:gap-4 items-start">
 
         <!-- Step 1 -->
-        <div class="flex-1 relative text-center px-6" data-animate data-delay="0">
+        <div class="flex-1 relative text-center lg:text-center px-4 lg:px-6 step-mobile-wrap" data-animate data-delay="0">
           <div class="relative inline-block mb-6">
-            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">01</span>
-            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
-              <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 5rem; line-height: 1;">01</span>
+            <div class="relative z-10 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-7">
+              <i data-lucide="message-circle" class="w-6 h-6 lg:w-7 lg:h-7 text-white"></i>
             </div>
           </div>
-          <h3 class="font-display font-semibold text-white text-xl mb-3">Hubungi Kami</h3>
+          <h3 class="font-display font-semibold text-white text-lg lg:text-xl mb-2">Hubungi Kami</h3>
           <p class="text-white/65 text-sm leading-relaxed">Chat via WhatsApp, ceritakan tentang hewanmu, dan kita atur jadwal yang paling cocok untukmu.</p>
         </div>
 
-        <!-- Connector -->
+        <!-- Desktop connector -->
         <div class="hidden lg:flex items-center" style="margin-top: 6.5rem; flex: 0 0 auto; width: 60px;">
           <div style="width: 100%; height: 2px; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
         </div>
 
         <!-- Step 2 -->
-        <div class="flex-1 relative text-center px-6" data-animate data-delay="150">
+        <div class="flex-1 relative text-center lg:text-center px-4 lg:px-6 step-mobile-wrap" data-animate data-delay="150">
           <div class="relative inline-block mb-6">
-            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">02</span>
-            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
-              <i data-lucide="handshake" class="w-7 h-7 text-white"></i>
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 5rem; line-height: 1;">02</span>
+            <div class="relative z-10 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-7">
+              <i data-lucide="handshake" class="w-6 h-6 lg:w-7 lg:h-7 text-white"></i>
             </div>
           </div>
-          <h3 class="font-display font-semibold text-white text-xl mb-3">Kenalan Dulu</h3>
+          <h3 class="font-display font-semibold text-white text-lg lg:text-xl mb-2">Kenalan Dulu</h3>
           <p class="text-white/65 text-sm leading-relaxed">Sebelum memulai, kami luangkan waktu untuk berkenalan dengan hewanmu — biar dia nyaman dan percaya dulu.</p>
         </div>
 
-        <!-- Connector -->
+        <!-- Desktop connector -->
         <div class="hidden lg:flex items-center" style="margin-top: 6.5rem; flex: 0 0 auto; width: 60px;">
           <div style="width: 100%; height: 2px; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
         </div>
 
         <!-- Step 3 -->
-        <div class="flex-1 relative text-center px-6" data-animate data-delay="300">
+        <div class="flex-1 relative text-center lg:text-center px-4 lg:px-6 step-mobile-wrap" data-animate data-delay="300">
           <div class="relative inline-block mb-6">
-            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 6rem; line-height: 1;">03</span>
-            <div class="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-8">
-              <i data-lucide="calendar-check" class="w-7 h-7 text-white"></i>
+            <span class="font-display font-bold text-white/10 absolute -top-4 left-1/2 -translate-x-1/2 select-none" style="font-size: 5rem; line-height: 1;">03</span>
+            <div class="relative z-10 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-7">
+              <i data-lucide="calendar-check" class="w-6 h-6 lg:w-7 lg:h-7 text-white"></i>
             </div>
           </div>
-          <h3 class="font-display font-semibold text-white text-xl mb-3">Perawatan Rutin</h3>
+          <h3 class="font-display font-semibold text-white text-lg lg:text-xl mb-2">Perawatan Rutin</h3>
           <p class="text-white/65 text-sm leading-relaxed">Setelah cocok, kami hadir secara rutin sesuai jadwal yang telah disepakati. Kamu tinggal santai.</p>
         </div>
 
@@ -578,7 +635,7 @@
   <!-- ═══════════════════════════════════════════════
        TESTIMONIALS
   ═══════════════════════════════════════════════ -->
-  <section id="testimoni" class="py-20" style="background: #f0f6fb;">
+  <section id="testimoni" class="py-14 md:py-20" style="background: #f0f6fb;">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14" data-animate>
         <span class="text-xs font-bold tracking-widest uppercase text-slate">Kata Mereka</span>
@@ -633,8 +690,10 @@
 
       </div>
 
-      <!-- Mobile: Alpine carousel -->
-      <div class="lg:hidden" x-data="{ current: 0, total: 3 }">
+      <!-- Mobile: Alpine carousel with swipe -->
+      <div class="lg:hidden" x-data="{ current: 0, total: 3, touchStartX: 0 }"
+           @touchstart="touchStartX = $event.touches[0].clientX"
+           @touchend="let dx = $event.changedTouches[0].clientX - touchStartX; if(dx < -40) current = (current+1)%total; if(dx > 40) current = (current-1+total)%total">
         <div class="overflow-hidden">
           <div class="flex transition-transform duration-500 ease-in-out" :style="`transform: translateX(-${current * 100}%)`">
 
@@ -693,7 +752,7 @@
   <!-- ═══════════════════════════════════════════════
        ABOUT / BRAND STORY
   ═══════════════════════════════════════════════ -->
-  <section id="tentang" class="py-20 bg-hero-gradient">
+  <section id="tentang" class="py-14 md:py-20 bg-hero-gradient">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex flex-col lg:flex-row items-center gap-16">
 
@@ -742,13 +801,13 @@
   <!-- ═══════════════════════════════════════════════
        CTA BANNER
   ═══════════════════════════════════════════════ -->
-  <section class="py-24" style="background: linear-gradient(135deg, #245879 0%, #1a3f5c 100%);">
+  <section class="py-16 md:py-24" style="background: linear-gradient(135deg, #245879 0%, #1a3f5c 100%);">
     <div class="max-w-3xl mx-auto px-6 text-center" data-animate>
-      <h2 class="font-display font-bold text-white mb-4" style="font-size: clamp(2rem, 5vw, 3rem);">Siap untuk mulai?</h2>
-      <p class="text-white/70 mb-10 text-lg leading-relaxed">
-        Hewan kesayanganmu menunggu perawatan terbaik.<br/>Chat kami sekarang — konsultasi gratis, tanpa kewajiban.
+      <h2 class="font-display font-bold text-white mb-4" style="font-size: clamp(1.8rem, 5vw, 3rem);">Siap untuk mulai?</h2>
+      <p class="text-white/70 mb-8 md:mb-10 text-base md:text-lg leading-relaxed">
+        Hewan kesayanganmu menunggu perawatan terbaik. Chat kami sekarang — konsultasi gratis, tanpa kewajiban.
       </p>
-      <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20konsultasi%20tentang%20perawatan%20hewan%20saya." target="_blank" class="btn-whatsapp text-base px-8 py-4 mb-6 inline-flex">
+      <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20konsultasi%20tentang%20perawatan%20hewan%20saya." target="_blank" class="btn-whatsapp text-base px-8 py-4 mb-6 inline-flex w-full sm:w-auto justify-center">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Hubungi via WhatsApp
       </a>
@@ -815,6 +874,11 @@
   <!-- ═══════════════════════════════════════════════
        SCRIPTS
   ═══════════════════════════════════════════════ -->
+
+  <!-- Floating WhatsApp FAB (mobile only) -->
+  <a href="https://wa.me/6282221626313?text=Halo%20Mili!%20Saya%20ingin%20tanya%20tentang%20layanan%20perawatan%20hewan." target="_blank" class="fab-wa" aria-label="Chat WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
