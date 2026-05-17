@@ -28,23 +28,6 @@ const steps = [
   },
 ];
 
-function Connector() {
-  return (
-    <div
-      className="hidden lg:flex items-center flex-none w-[60px]"
-      style={{ marginTop: "6.5rem" }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "2px",
-          borderTop: "2px dashed rgba(255,255,255,0.2)",
-        }}
-      />
-    </div>
-  );
-}
-
 export default function HowItWorks() {
   return (
     <section id="cara-kerja" className="py-14 md:py-24" style={{ background: "#245879" }}>
@@ -65,14 +48,50 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-4 items-start">
+        {/* ── Mobile: timeline layout ── */}
+        <div className="lg:hidden flex flex-col">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            const isLast = i === steps.length - 1;
+            return (
+              <div key={step.num} className="flex gap-5" data-animate data-delay={step.delay}>
+                {/* Left: icon + connector line */}
+                <div className="flex flex-col items-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  {!isLast && (
+                    <div className="w-px flex-1 my-3" style={{ background: "rgba(255,255,255,0.15)", minHeight: "3rem" }} />
+                  )}
+                </div>
+
+                {/* Right: number + title + description */}
+                <div className={`flex-1 ${isLast ? "" : "pb-8"}`}>
+                  <span
+                    className="font-display font-bold text-white/20 leading-none block mb-1"
+                    style={{ fontSize: "1.1rem" }}
+                  >
+                    {step.num}
+                  </span>
+                  <h3 className="font-display font-semibold text-white text-lg mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-white/65 text-sm leading-relaxed">{step.body}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── Desktop: horizontal flow ── */}
+        <div className="hidden lg:flex gap-4 items-start">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
               <>
                 <div
                   key={step.num}
-                  className="flex-1 relative text-center lg:text-center px-4 lg:px-6 step-mobile-wrap"
+                  className="flex-1 text-center px-6"
                   data-animate
                   data-delay={step.delay}
                 >
@@ -83,22 +102,31 @@ export default function HowItWorks() {
                     >
                       {step.num}
                     </span>
-                    <div className="relative z-10 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-7">
-                      <Icon className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+                    <div className="relative z-10 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mx-auto mt-7">
+                      <Icon className="w-7 h-7 text-white" />
                     </div>
                   </div>
-                  <h3 className="font-display font-semibold text-white text-lg lg:text-xl mb-2">
+                  <h3 className="font-display font-semibold text-white text-xl mb-2">
                     {step.title}
                   </h3>
                   <p className="text-white/65 text-sm leading-relaxed">{step.body}</p>
                 </div>
-                {i < steps.length - 1 && <Connector key={`conn-${i}`} />}
+
+                {i < steps.length - 1 && (
+                  <div
+                    key={`conn-${i}`}
+                    className="flex items-center flex-none w-[60px]"
+                    style={{ marginTop: "6.5rem" }}
+                  >
+                    <div style={{ width: "100%", height: "2px", borderTop: "2px dashed rgba(255,255,255,0.2)" }} />
+                  </div>
+                )}
               </>
             );
           })}
         </div>
 
-        <div className="text-center mt-14" data-animate>
+        <div className="text-center mt-12 md:mt-14" data-animate>
           <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
             <WaIcon size={18} />
             Mulai Sekarang
